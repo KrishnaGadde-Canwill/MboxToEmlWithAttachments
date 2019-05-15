@@ -1,6 +1,6 @@
 import mailbox,os
-from email.header import decode_header
-import base64
+#from email.header import decode_header
+#import base64
 
 
 mbx = mailbox.mbox("usethis.mbox")
