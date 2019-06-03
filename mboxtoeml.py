@@ -1,4 +1,5 @@
 import mailbox,os
+from email import generator
 #from email.header import decode_header
 #import base64
 
@@ -14,10 +15,14 @@ saveAttch_to = 'MboxToEmlAndAttch/Attch/'
 if not os.path.exists(saveAttch_to):
     os.makedirs(saveAttch_to)
 
-for k,v in mbx.iteritems():
-    f=open(saveEML_to+str(k)+".eml",'w')
-    f.write(str(v))
+# for k,v in mbx.iteritems():
+#     f=open(saveEML_to+str(k)+".eml",'w')
+#     f.write(str(v))
 
+for k,v in mbx.iteritems():
+    with open(saveEML_to+str(k)+".eml",'w') as f:
+        gen = generator.Generator(f)
+        gen.flatten(v)
 
 def extractattch(i):
     if i.get_content_maintype()=='multipart':
